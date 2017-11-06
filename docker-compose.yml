@@ -1,11 +1,5 @@
 version: '3.3'
 
-# We define volumes here.
-# In this case, we define a volume for the database but it's overkill
-# because we used this volume only with one container.
-volumes:
-  db-volume:
-
 # We define containers here
 services:
 
@@ -20,9 +14,8 @@ services:
       - MYSQL_DATABASE=${DATABASE_NAME}
       - MYSQL_USER=drupal
       - MYSQL_PASSWORD=drupal
-    # We used the volume previously defined.
     volumes:
-      - db-volume:/var/lib/mysql
+      - "./data/db/mysql:/var/lib/mysql"
 
   # Container for PhpMyAdmin
   php-my-admin:
